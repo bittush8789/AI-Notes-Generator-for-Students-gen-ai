@@ -24,19 +24,18 @@
 - [2. Project Overview](#-2-project-overview)
 - [3. Key Features](#-3-key-features)
 - [4. Interface & Screenshots](#-4-interface--screenshots)
-- [5. System Architecture](#-5-system-architecture)
-- [6. Technical Stack](#-6-technical-stack)
-- [7. Complete Folder Structure](#-7-complete-folder-structure)
-- [8. Installation & Setup Guide](#-8-installation--setup-guide)
-- [9. Environment Variables Configuration](#-9-environment-variables-configuration)
-- [10. REST API Documentation](#-10-rest-api-documentation)
-- [11. Premium UI/UX & Interaction Design](#-11-premium-uiux--interaction-design)
-- [12. Enterprise Security & Session Protection](#-12-enterprise-security--session-protection)
-- [13. Advanced Performance Optimizations](#-13-advanced-performance-optimizations)
-- [14. Strategic Feature Roadmap](#-14-strategic-feature-roadmap)
-- [15. Production Deployment Guide](#-15-production-deployment-guide)
-- [16. Open-Source Contribution Guidelines](#-16-open-source-contribution-guidelines)
-- [17. Project License](#-17-project-license)
+- [5. Technical Stack](#-5-technical-stack)
+- [6. Complete Folder Structure](#-6-complete-folder-structure)
+- [7. Installation & Setup Guide](#-7-installation--setup-guide)
+- [8. Environment Variables Configuration](#-8-environment-variables-configuration)
+- [9. REST API Documentation](#-9-rest-api-documentation)
+- [10. Premium UI/UX & Interaction Design](#-10-premium-uiux--interaction-design)
+- [11. Enterprise Security & Session Protection](#-11-enterprise-security--session-protection)
+- [12. Advanced Performance Optimizations](#-12-advanced-performance-optimizations)
+- [13. Strategic Feature Roadmap](#-13-strategic-feature-roadmap)
+- [14. Production Deployment Guide](#-14-production-deployment-guide)
+- [15. Open-Source Contribution Guidelines](#-15-open-source-contribution-guidelines)
+- [16. Project License](#-16-project-license)
 
 ---
 
@@ -130,79 +129,7 @@ Our platform is engineered around three major academic paradigms: **Automated Sy
 
 ---
 
-## 🏗️ 5. System Architecture
-
-The architecture uses a high-performance **decoupled model** designed for massive client traffic, secure sessions, and microsecond responses. The following diagram demonstrates the data flows and system architecture of a production-grade StudyAI Notes cluster:
-
-```mermaid
-graph TD
-    %% Styling Configuration
-    classDef client fill:#38B2AC,stroke:#2C7A7B,stroke-width:2px,color:#fff;
-    classDef proxy fill:#4A5568,stroke:#2D3748,stroke-width:2px,color:#fff;
-    classDef server fill:#009688,stroke:#00796B,stroke-width:2px,color:#fff;
-    classDef db fill:#3182CE,stroke:#2B6CB0,stroke-width:2px,color:#fff;
-    classDef ai fill:#F55036,stroke:#C53030,stroke-width:2px,color:#fff;
-
-    %% Elements
-    User((🎓 Student User))
-    
-    subgraph Frontend [React SPA Client]
-        SPA[Vite React Application]:::client
-        Zustand[Zustand Global State]:::client
-        AxiosClient[Axios API Handler]:::client
-    end
-    
-    subgraph Gateway [Inbound Traffic Controller]
-        Nginx[Nginx Reverse Proxy & Load Balancer]:::proxy
-    end
-
-    subgraph Backend [FastAPI Application Instance]
-        Router[APIRouter Context Gateway]:::server
-        AuthHandler[JWT & Bcrypt Security Guards]:::server
-        FileParser[Multi-Format File Parser]:::server
-        AIService[AI Orchestration Pipeline]:::server
-    end
-
-    subgraph Storage [Relational & Semantic Datastores]
-        SQLite[(MySQL / SQLite Engine)]:::db
-        VectorStore[(Local Vector Store Index)]:::db
-    end
-
-    subgraph ExternalServices [Generative AI Cloud Layer]
-        GroqAPI[Groq Inference Engine Llama 3.3]:::ai
-        WhisperAPI[Whisper Audio Engine large-v3]:::ai
-    end
-
-    %% Routing Connections
-    User ──►|"HTTPS Requests (Port 80/443)"| SPA
-    SPA ──►|Zustand Events| Zustand
-    Zustand ──►|Axios Client Requests| AxiosClient
-    AxiosClient ──► Nginx
-    Nginx ──►|Proxy Route /api| Router
-    
-    Router ──► AuthHandler
-    Router ──► FileParser
-    Router ──► AIService
-    
-    AuthHandler ──►|Read/Write User Credentials| SQLite
-    FileParser ──►|Parse PDFs & TXTs| AIService
-    AIService ──►|Store Notes, Flashcards & Quizzes| SQLite
-    
-    %% AI Pipeline Routing
-    AIService ──►|Semantic Retrieval Queries| VectorStore
-    AIService ──►|Groq Chat Completions REST calls| GroqAPI
-    FileParser ──►|Transcribe Audio Lectures| WhisperAPI
-    
-    class SPA,Zustand,AxiosClient client;
-    class Nginx proxy;
-    class Router,AuthHandler,FileParser,AIService server;
-    class SQLite,VectorStore db;
-    class GroqAPI,WhisperAPI ai;
-```
-
----
-
-## 🛠️ 6. Technical Stack
+## 🛠️ 5. Technical Stack
 
 The StudyAI Notes tech stack is highly optimized for fast response times and lightweight footprints:
 
@@ -230,7 +157,7 @@ The StudyAI Notes tech stack is highly optimized for fast response times and lig
 
 ---
 
-## 📂 7. Complete Folder Structure
+## 📂 6. Complete Folder Structure
 
 Below is the directory architecture of the workspace, structured cleanly for rapid, intuitive onboarding:
 
@@ -294,7 +221,7 @@ d:/Notes-generator/
 
 ---
 
-## 🚀 8. Installation & Setup Guide
+## 🚀 7. Installation & Setup Guide
 
 Get your local developer workspace running in less than 5 minutes by following these instructions.
 
@@ -398,7 +325,7 @@ python scratch/sanity_check.py
 
 ---
 
-## 🔒 9. Environment Variables Configuration
+## 🔒 8. Environment Variables Configuration
 
 The `.env` file handles database fallback policies, API endpoints, directory settings, and encryption:
 
@@ -415,7 +342,7 @@ The `.env` file handles database fallback policies, API endpoints, directory set
 
 ---
 
-## 🔌 10. REST API Documentation
+## 🔌 9. REST API Documentation
 
 FastAPI automatically serves premium OpenAPI-compliant documentation at `/docs` (Swagger UI) and `/redoc` (ReDoc). Below is the comprehensive schema mapping the key REST API controllers:
 
@@ -599,7 +526,7 @@ FastAPI automatically serves premium OpenAPI-compliant documentation at `/docs` 
 
 ---
 
-## 🎨 11. Premium UI/UX & Interaction Design
+## 🎨 10. Premium UI/UX & Interaction Design
 
 The design system of StudyAI Notes balances functional spacing with an immersive, visual user experience. 
 
@@ -612,7 +539,7 @@ The design system of StudyAI Notes balances functional spacing with an immersive
 
 ---
 
-## 🛡️ 12. Enterprise Security & Session Protection
+## 🛡️ 11. Enterprise Security & Session Protection
 
 StudyAI Notes implement security controls that match enterprise compliance guidelines:
 
@@ -624,7 +551,7 @@ StudyAI Notes implement security controls that match enterprise compliance guide
 
 ---
 
-## ⚡ 13. Advanced Performance Optimizations
+## ⚡ 12. Advanced Performance Optimizations
 
 Our architecture is tuned to run efficiently on simple, low-cost servers:
 
@@ -636,7 +563,7 @@ Our architecture is tuned to run efficiently on simple, low-cost servers:
 
 ---
 
-## 🗺️ 14. Strategic Feature Roadmap
+## 🗺️ 13. Strategic Feature Roadmap
 
 We are constantly improving StudyAI Notes to help students succeed. Here is our planned roadmap for future releases:
 
@@ -657,7 +584,7 @@ We are constantly improving StudyAI Notes to help students succeed. Here is our 
 
 ---
 
-## 🐳 15. Production Deployment Guide
+## 🐳 14. Production Deployment Guide
 
 Deploy StudyAI Notes in production in minutes using standard Docker container orchestrators:
 
@@ -702,7 +629,7 @@ Deploy your backend using the included Dockerfile:
 
 ---
 
-## 🤝 16. Open-Source Contribution Guidelines
+## 🤝 15. Open-Source Contribution Guidelines
 
 We love contributions! Follow these steps to contribute to StudyAI Notes:
 
@@ -731,7 +658,7 @@ We use clean semantic commits to make tracking changes easy:
 
 ---
 
-## 📄 17. Project License
+## 📄 16. Project License
 
 StudyAI Notes is open-source software licensed under the **MIT License**.
 
