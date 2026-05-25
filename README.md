@@ -30,14 +30,13 @@
 - [8. Installation & Setup Guide](#-8-installation--setup-guide)
 - [9. Environment Variables Configuration](#-9-environment-variables-configuration)
 - [10. REST API Documentation](#-10-rest-api-documentation)
-- [11. Core AI Engine & RAG Workflows](#-11-core-ai-engine--rag-workflows)
-- [12. Premium UI/UX & Interaction Design](#-12-premium-uiux--interaction-design)
-- [13. Enterprise Security & Session Protection](#-13-enterprise-security--session-protection)
-- [14. Advanced Performance Optimizations](#-14-advanced-performance-optimizations)
-- [15. Strategic Feature Roadmap](#-15-strategic-feature-roadmap)
-- [16. Production Deployment Guide](#-16-production-deployment-guide)
-- [17. Open-Source Contribution Guidelines](#-17-open-source-contribution-guidelines)
-- [18. Project License](#-18-project-license)
+- [11. Premium UI/UX & Interaction Design](#-11-premium-uiux--interaction-design)
+- [12. Enterprise Security & Session Protection](#-12-enterprise-security--session-protection)
+- [13. Advanced Performance Optimizations](#-13-advanced-performance-optimizations)
+- [14. Strategic Feature Roadmap](#-14-strategic-feature-roadmap)
+- [15. Production Deployment Guide](#-15-production-deployment-guide)
+- [16. Open-Source Contribution Guidelines](#-16-open-source-contribution-guidelines)
+- [17. Project License](#-17-project-license)
 
 ---
 
@@ -600,73 +599,7 @@ FastAPI automatically serves premium OpenAPI-compliant documentation at `/docs` 
 
 ---
 
-## 🧠 11. Core AI Engine & RAG Workflows
-
-StudyAI Notes is powered by custom RAG (Retrieval-Augmented Generation) pipelines and dynamic context assembly. Below is the workflow diagram mapping the ingestion and evaluation cycles:
-
-### Ingestion & Compilation Pipeline
-```mermaid
-flowchart TD
-    %% Styling
-    classDef step fill:#3182CE,stroke:#2B6CB0,stroke-width:2px,color:#fff;
-    classDef decision fill:#D69E2E,stroke:#B7791F,stroke-width:2px,color:#fff;
-    classDef api fill:#F55036,stroke:#C53030,stroke-width:2px,color:#fff;
-    classDef store fill:#4A5568,stroke:#2D3748,stroke-width:2px,color:#fff;
-
-    %% Ingestion Node Setup
-    Start([🎓 Student uploads lecture document / audio]) ──► CheckType{Identify file format}
-    
-    CheckType ──►|PDF / DOCX / TXT| DocParser[Parse Text via pdfplumber]:::step
-    CheckType ──►|MP3 / WAV / M4A| AudioTranscribe[Invoke Groq Whisper large-v3 API]:::api
-    
-    DocParser ──► CombinedText[Unstructured Lecture Text Block]
-    AudioTranscribe ──► CombinedText
-    
-    CombinedText ──► Splitter[Recursive Character Splitting: 800 char chunk size, 150 overlap]:::step
-    
-    Splitter ──► CheckTransformer{SentenceTransformers model available?}:::decision
-    
-    CheckTransformer ──►|Yes - Semantic| TransformerEmbedding[all-MiniLM-L6-v2 Embeddings Generator]:::step
-    CheckTransformer ──►|No - Fallback| TFIDFIndexing[Tokenize + TF-IDF Keyword Indexer]:::step
-    
-    TransformerEmbedding ──► VectorStoreSave[(Save Note JSON to vector_store/)]:::store
-    TFIDFIndexing ──► VectorStoreSave
-    
-    %% Generative AI Generation Setup
-    CombinedText ──► GroqNotesGen[Invoke Llama 3.3 Versatile: Summaries, LaTeX math, Analogy]:::api
-    GroqNotesGen ──► NoteOutput[Store beautiful formatted markdown in Database]:::store
-    
-    NoteOutput ──► PrecompileCards[Pre-compile 20+ Flashcards & 10 Quiz Questions]:::step
-    PrecompileCards ──► RenderUI([Instant Workspace rendering inside UI Notebook!])
-```
-
-### Stateful RAG Evaluation Cycle
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Student as 🎓 Student UI Client
-    participant API as ⚡ FastAPI Backend
-    participant DB as 🗄️ Relational DB (SQLLite/MySQL)
-    participant VS as 🔍 Local Vector Store Index
-    participant Groq as 🔮 Groq Cloud LLM Engine
-
-    Student->>API: Post Query: `Explain deadlocks simpler` (ChatRequest JSON)
-    API->>DB: Fetch user note & verify ownership
-    DB-->>API: Confirmed owner status
-    API->>VS: Perform semantic search (query_text, note_id, top_k=3)
-    VS-->>API: Return 3 most relevant lecture text chunks
-    API->>DB: Recall last 6 chat messages (conversational history)
-    DB-->>API: Active history payload
-    API->>API: Assemble system prompt with RAG context & memory logs
-    API->>Groq: Post JSON payload (Llama-3.3-70b-versatile, temperature=0.3)
-    Groq-->>API: Return highly detailed, markdown-formatted study answer
-    API->>DB: Persist chat questions and answers inside database records
-    API-->>Student: Deliver complete ChatMessageResponse (Render markdown immediately!)
-```
-
----
-
-## 🎨 12. Premium UI/UX & Interaction Design
+## 🎨 11. Premium UI/UX & Interaction Design
 
 The design system of StudyAI Notes balances functional spacing with an immersive, visual user experience. 
 
@@ -679,7 +612,7 @@ The design system of StudyAI Notes balances functional spacing with an immersive
 
 ---
 
-## 🛡️ 13. Enterprise Security & Session Protection
+## 🛡️ 12. Enterprise Security & Session Protection
 
 StudyAI Notes implement security controls that match enterprise compliance guidelines:
 
@@ -691,7 +624,7 @@ StudyAI Notes implement security controls that match enterprise compliance guide
 
 ---
 
-## ⚡ 14. Advanced Performance Optimizations
+## ⚡ 13. Advanced Performance Optimizations
 
 Our architecture is tuned to run efficiently on simple, low-cost servers:
 
@@ -703,7 +636,7 @@ Our architecture is tuned to run efficiently on simple, low-cost servers:
 
 ---
 
-## 🗺️ 15. Strategic Feature Roadmap
+## 🗺️ 14. Strategic Feature Roadmap
 
 We are constantly improving StudyAI Notes to help students succeed. Here is our planned roadmap for future releases:
 
@@ -724,7 +657,7 @@ We are constantly improving StudyAI Notes to help students succeed. Here is our 
 
 ---
 
-## 🐳 16. Production Deployment Guide
+## 🐳 15. Production Deployment Guide
 
 Deploy StudyAI Notes in production in minutes using standard Docker container orchestrators:
 
@@ -769,7 +702,7 @@ Deploy your backend using the included Dockerfile:
 
 ---
 
-## 🤝 17. Open-Source Contribution Guidelines
+## 🤝 16. Open-Source Contribution Guidelines
 
 We love contributions! Follow these steps to contribute to StudyAI Notes:
 
@@ -798,7 +731,7 @@ We use clean semantic commits to make tracking changes easy:
 
 ---
 
-## 📄 18. Project License
+## 📄 17. Project License
 
 StudyAI Notes is open-source software licensed under the **MIT License**.
 
