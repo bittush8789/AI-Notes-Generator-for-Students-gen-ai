@@ -38,7 +38,6 @@
 - [16. Production Deployment Guide](#-16-production-deployment-guide)
 - [17. Open-Source Contribution Guidelines](#-17-open-source-contribution-guidelines)
 - [18. Project License](#-18-project-license)
-- [19. Core Engineering Team](#-19-core-engineering-team)
 
 ---
 
@@ -826,22 +825,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
-
----
-
-## 👥 19. Core Engineering Team
-
-Meet the engineers behind the StudyAI Notes learning platform:
-
-*   **Lead AI Architect & Full-Stack Developer**
-    *   *Bio:* Specialized in developing generative AI pipelines, custom retrieval architectures, and sleek full-stack SaaS apps.
-    *   [GitHub](https://github.com/) | [LinkedIn](https://linkedin.com/) | [Portfolio](https://google.com/)
-*   **Technical Documentation Engineer**
-    *   *Bio:* Dedicated to writing clean, comprehensive, developer-friendly documentation for open-source projects.
-    *   [GitHub](https://github.com/) | [LinkedIn](https://linkedin.com/)
-
----
-
 <p align="center">
   <sub>Developed with ❤️ by the StudyAI Team to help students succeed. Happy Learning! 🎓</sub>
 </p>
