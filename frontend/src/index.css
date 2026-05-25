@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+body {
+  background-color: #f1f5f9; /* Soft light slate background by default */
+  color: #1e293b; /* Slate dark text by default */
+  font-family: 'Outfit', 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1), color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+}
+
+body.dark {
+  background-color: #05070c; /* Obsidian dark background */
+  color: #f1f5f9; /* Slate light text */
+}
+
+/* premium Glassmorphism inspired by Perplexity & Linear (Dual-Theme aware) */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 8px 30px rgba(15, 23, 42, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 0.6);
+  transition: background-color 300ms, border-color 300ms, box-shadow 300ms;
+}
+
+body.dark .glass-panel {
+  background: rgba(13, 18, 30, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 4px 20px 0 rgba(15, 23, 42, 0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.dark .glass-card {
+  background: rgba(22, 28, 45, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.25);
+}
+
+.glass-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(99, 102, 241, 0.2);
+  box-shadow: 0 12px 30px 0 rgba(99, 102, 241, 0.05);
+}
+
+body.dark .glass-card:hover {
+  border-color: rgba(99, 102, 241, 0.25);
+  box-shadow: 0 12px 30px 0 rgba(99, 102, 241, 0.08), 0 0 1px 1px rgba(99, 102, 241, 0.15) inset;
+}
+
+/* Neon glow border utilities (Active in both modes, adjusted opacity in light) */
+.glow-indigo {
+  box-shadow: 0 0 20px -5px rgba(99, 102, 241, 0.15);
+}
+body.dark .glow-indigo {
+  box-shadow: 0 0 20px -5px rgba(99, 102, 241, 0.35);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px -5px rgba(168, 85, 247, 0.15);
+}
+body.dark .glow-purple {
+  box-shadow: 0 0 20px -5px rgba(168, 85, 247, 0.35);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.15);
+}
+body.dark .glow-emerald {
+  box-shadow: 0 0 20px -5px rgba(16, 185, 129, 0.35);
+}
+
+.glow-amber {
+  box-shadow: 0 0 20px -5px rgba(245, 158, 11, 0.15);
+}
+body.dark .glow-amber {
+  box-shadow: 0 0 20px -5px rgba(245, 158, 11, 0.35);
+}
+
+/* Dashed active upload border animation */
+.glow-dashed-border {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='24' ry='24' stroke='%236366F1FF' stroke-width='2' stroke-dasharray='10%2c 10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+  border-radius: 24px;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+body.dark ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+body.dark ::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Shimmer/Loading Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-effect {
+  background: linear-gradient(90deg, #e2e8f0 25%, #cbd5e1 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+body.dark .shimmer-effect {
+  background: linear-gradient(90deg, #0d121f 25%, #1e293b 50%, #0d121f 75%);
+}
+
+/* Flip card utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+/* Float & Glow Pulse Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.glow-bulb {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Custom hide scrollbar utility */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom Toast Slide-in Keyframes */
+@keyframes slide-in {
+  from {
+    transform: translateY(100%) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-toast {
+  animation: slide-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ==========================================================================
+   Premium AI Document Workspace Styles (Notion & ChatGPT Canvas inspired)
+   ========================================================================== */
+
+.notes-document {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.85;
+  letter-spacing: -0.004em;
+  font-size: 1.05rem;
+}
+
+.notes-document-hindi {
+  font-family: 'Noto Sans Devanagari', 'Inter', sans-serif !important;
+  line-height: 1.95 !important;
+  letter-spacing: 0.015em !important;
+  font-size: 1.1rem !important;
+}
+
+/* Custom Styled Tables for study datasets */
+.notes-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.8rem 0;
+  border-radius: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+body.dark .notes-table-container {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.notes-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.925rem;
+  text-align: left;
+}
+
+.notes-table th {
+  background: rgba(15, 23, 42, 0.02);
+  padding: 12px 16px;
+  font-weight: 700;
+  border-bottom: 2px solid rgba(15, 23, 42, 0.08);
+}
+
+body.dark .notes-table th {
+  background: rgba(255, 255, 255, 0.01);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+.notes-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+}
+
+body.dark .notes-table td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.notes-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Navigation Scroll Spy & Table of Contents */
+.active-heading-toc {
+  color: #6366f1 !important;
+  font-weight: 800 !important;
+  border-left: 3px solid #6366f1 !important;
+  padding-left: 14px !important;
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.06) 0%, transparent 100%);
+}
+
+body.dark .active-heading-toc {
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.12) 0%, transparent 100%);
+}
+
+/* Premium Code Editor Blocks */
+.code-block-editor {
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 1.8rem 0;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+body.dark .code-block-editor {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Distraction free reading focus animations */
+.focus-transition {
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Math block mathjax representations */
+.math-block {
+  margin: 1.8rem 0;
+  padding: 1.25rem;
+  border-radius: 16px;
+  text-align: center;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  overflow-x: auto;
+  border: 1px solid rgba(99, 102, 241, 0.1);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.03) 0%, rgba(99, 102, 241, 0.01) 100%);
+}
+
+body.dark .math-block {
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.06) 0%, rgba(99, 102, 241, 0.02) 100%);
+}
+
+/* Custom focus overlay for distraction-free */
+.focus-overlay {
+  background-color: rgba(5, 7, 12, 0.15);
+  backdrop-filter: blur(4px);
+}
+
+body.dark .focus-overlay {
+  background-color: rgba(5, 7, 12, 0.55);
+  backdrop-filter: blur(6px);
+}
+

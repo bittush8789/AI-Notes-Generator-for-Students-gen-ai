@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  # 1. MySQL Database Service
+  db:
+    image: mysql:8.0
+    container_name: notes_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: notes_generator
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3606:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  # 2. FastAPI Backend Service
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: notes_backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=mysql+pymysql://root:password@db/notes_generator
+      - SQLITE_FALLBACK_URL=sqlite:///./notes_generator.db
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    depends_on:
+      - db
+    volumes:
+      - uploads_data:/workspace/uploads
+      - vector_store_data:/workspace/vector_store
+
+  # 3. React Frontend Service
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: notes_frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
+  uploads_data:
+  vector_store_data:
